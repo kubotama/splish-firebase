@@ -20,5 +20,9 @@
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
     "typescript": "4.7.2"
-  }
+  },
+  "description": "speak, listen and shadow",
+  "main": "index.js",
+  "author": "kubotama <16697573+kubotama@users.noreply.github.com>",
+  "license": "MIT"
 }
