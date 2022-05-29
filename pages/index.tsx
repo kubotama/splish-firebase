@@ -22,6 +22,9 @@ const Home: NextPage = () => {
           placeholder="登録するテキストを入力してください"
         />
         <button className={styles.button}>登録</button>
+        <div className={styles.description} data-testid="registered-text">
+          登録されたテキスト
+        </div>
       </main>
     </div>
   );

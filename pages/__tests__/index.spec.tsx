@@ -30,7 +30,10 @@ describe("トップページ", () => {
       expect(registerButton).toBeInTheDocument();
     });
 
-    it.todo("登録されたテキスト");
+    it("登録されたテキスト", () => {
+      const registerText = screen.getByTestId("registered-text");
+      expect(registerText).toBeInTheDocument();
+    });
   });
 
   describe("変換ブロック", () => {
