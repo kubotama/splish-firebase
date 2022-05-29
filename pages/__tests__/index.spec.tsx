@@ -30,6 +30,11 @@ describe("トップページ", () => {
       expect(registerButton).toBeInTheDocument();
     });
 
+    it("登録されたテキストのラベル", () => {
+      const registeredTextLabel = screen.getByText("登録されたテキスト");
+      expect(registeredTextLabel).toBeInTheDocument();
+    });
+
     it("登録されたテキスト", () => {
       const registerText = screen.getByTestId("registered-text");
       expect(registerText).toBeInTheDocument();
@@ -37,11 +42,26 @@ describe("トップページ", () => {
   });
 
   describe("変換ブロック", () => {
-    it.todo("変換ボタン");
-    it.todo("変換されたテキスト");
+    it("変換ボタン", () => {
+      const ttsButton = screen.getByText("変換");
+      expect(ttsButton).toBeInTheDocument();
+    });
+
+    it("変換されたテキストのラベル", () => {
+      const ttsedTextLabel = screen.getByText("変換されたテキスト");
+      expect(ttsedTextLabel).toBeInTheDocument();
+    });
+
+    it("変換されたテキスト", () => {
+      const ttsedText = screen.getByTestId("ttsed-text");
+      expect(ttsedText).toBeInTheDocument();
+    });
   });
 
   describe("再生ブロック", () => {
-    it.todo("再生ボタン");
+    it("再生ボタン", () => {
+      const playButton = screen.getByText("再生");
+      expect(playButton).toBeInTheDocument();
+    });
   });
 });
