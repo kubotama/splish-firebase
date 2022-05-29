@@ -16,6 +16,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
+        <div className={styles.description}>登録するテキスト</div>
       </main>
     </div>
   );
