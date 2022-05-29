@@ -25,6 +25,8 @@ const Home: NextPage = () => {
         <div className={styles.description} data-testid="registered-text">
           登録されたテキスト
         </div>
+
+        <button className={styles.button}>変換</button>
       </main>
     </div>
   );

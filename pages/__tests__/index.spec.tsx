@@ -37,7 +37,11 @@ describe("トップページ", () => {
   });
 
   describe("変換ブロック", () => {
-    it.todo("変換ボタン");
+    it("変換ボタン", () => {
+      const ttsButton = screen.getByText("変換");
+      expect(ttsButton).toBeInTheDocument();
+    });
+
     it.todo("変換されたテキスト");
   });
 
