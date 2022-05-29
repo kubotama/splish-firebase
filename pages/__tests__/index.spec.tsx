@@ -30,6 +30,8 @@ describe("トップページ", () => {
       expect(registerButton).toBeInTheDocument();
     });
 
+    it.todo("登録されたテキストのラベル");
+
     it("登録されたテキスト", () => {
       const registerText = screen.getByTestId("registered-text");
       expect(registerText).toBeInTheDocument();
@@ -41,6 +43,8 @@ describe("トップページ", () => {
       const ttsButton = screen.getByText("変換");
       expect(ttsButton).toBeInTheDocument();
     });
+
+    it.todo("変換されたテキストのラベル");
 
     it("変換されたテキスト", () => {
       const ttsedText = screen.getByTestId("ttsed-text");
