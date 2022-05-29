@@ -24,7 +24,12 @@ describe("トップページ", () => {
         screen.getByPlaceholderText("登録するテキストを入力してください");
       expect(registerTextarea).toBeInTheDocument();
     });
-    it.todo("登録ボタン");
+
+    it("登録ボタン", () => {
+      const registerButton = screen.getByText("登録");
+      expect(registerButton).toBeInTheDocument();
+    });
+
     it.todo("登録されたテキスト");
   });
 
