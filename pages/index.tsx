@@ -17,6 +17,10 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
         <div className={styles.description}>登録するテキスト</div>
+        <textarea
+          className={styles.textarea}
+          placeholder="登録するテキストを入力してください"
+        />
       </main>
     </div>
   );

@@ -18,7 +18,12 @@ describe("トップページ", () => {
       const registerTextareaLabel = screen.getByText("登録するテキスト");
       expect(registerTextareaLabel).toBeInTheDocument();
     });
-    it.todo("入力テキストエリア");
+
+    it("入力テキストエリア", () => {
+      const registerTextarea =
+        screen.getByPlaceholderText("登録するテキストを入力してください");
+      expect(registerTextarea).toBeInTheDocument();
+    });
     it.todo("登録ボタン");
     it.todo("登録されたテキスト");
   });
