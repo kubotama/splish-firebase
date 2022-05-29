@@ -47,7 +47,10 @@ describe("トップページ", () => {
       expect(ttsButton).toBeInTheDocument();
     });
 
-    it.todo("変換されたテキストのラベル");
+    it("変換されたテキストのラベル", () => {
+      const ttsedTextLabel = screen.getByText("変換されたテキスト");
+      expect(ttsedTextLabel).toBeInTheDocument();
+    });
 
     it("変換されたテキスト", () => {
       const ttsedText = screen.getByTestId("ttsed-text");
