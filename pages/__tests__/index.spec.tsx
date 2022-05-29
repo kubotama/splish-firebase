@@ -59,6 +59,9 @@ describe("トップページ", () => {
   });
 
   describe("再生ブロック", () => {
-    it.todo("再生ボタン");
+    it("再生ボタン", () => {
+      const playButton = screen.getByText("再生");
+      expect(playButton).toBeInTheDocument();
+    });
   });
 });

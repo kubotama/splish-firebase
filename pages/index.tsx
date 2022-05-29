@@ -29,6 +29,8 @@ const Home: NextPage = () => {
         <button className={styles.button}>変換</button>
         <div className={styles.description}>変換されたテキスト</div>
         <div className={styles.description} data-testid="ttsed-text" />
+
+        <button className={styles.button}>再生</button>
       </main>
     </div>
   );
