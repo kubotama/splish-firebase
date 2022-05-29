@@ -42,7 +42,10 @@ describe("トップページ", () => {
       expect(ttsButton).toBeInTheDocument();
     });
 
-    it.todo("変換されたテキスト");
+    it("変換されたテキスト", () => {
+      const ttsedText = screen.getByTestId("ttsed-text");
+      expect(ttsedText).toBeInTheDocument();
+    });
   });
 
   describe("再生ブロック", () => {
