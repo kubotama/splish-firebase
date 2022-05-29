@@ -19,5 +19,16 @@ describe("トップページ", () => {
       expect(registerTextareaLabel).toBeInTheDocument();
     });
     it.todo("入力テキストエリア");
+    it.todo("登録ボタン");
+    it.todo("登録されたテキスト");
+  });
+
+  describe("変換ブロック", () => {
+    it.todo("変換ボタン");
+    it.todo("変換されたテキスト");
+  });
+
+  describe("再生ブロック", () => {
+    it.todo("再生ボタン");
   });
 });
