@@ -30,7 +30,10 @@ describe("トップページ", () => {
       expect(registerButton).toBeInTheDocument();
     });
 
-    it.todo("登録されたテキストのラベル");
+    it("登録されたテキストのラベル", () => {
+      const registeredTextLabel = screen.getByText("登録されたテキスト");
+      expect(registeredTextLabel).toBeInTheDocument();
+    });
 
     it("登録されたテキスト", () => {
       const registerText = screen.getByTestId("registered-text");
