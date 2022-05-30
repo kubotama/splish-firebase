@@ -22,7 +22,9 @@ const Home: NextPage = () => {
           className={styles.textarea}
           placeholder="登録するテキストを入力してください"
         />
-        <button className={styles.button}>登録</button>
+        <button className={styles.button} disabled>
+          登録
+        </button>
         <div className={styles.description}>登録されたテキスト</div>
         <div className={styles.description} data-testid="registered-text"></div>
 
