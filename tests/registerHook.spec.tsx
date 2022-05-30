@@ -8,7 +8,11 @@ describe("登録ブロックのアクション", () => {
     render(<Home />);
   });
 
-  it.todo("初期状態では登録するテキストの入力領域は空である。");
+  it("初期状態では登録するテキストの入力領域は空である。", () => {
+    const textarea =
+      screen.getByPlaceholderText("登録するテキストを入力してください");
+    expect(textarea).toHaveValue("");
+  });
 
   it("登録するテキストが空の場合、登録ボタンが無効である。", () => {
     expect(screen.getByText("登録")).toBeDisabled();
