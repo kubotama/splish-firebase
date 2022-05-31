@@ -26,7 +26,16 @@ describe("登録ブロックのアクション", () => {
     );
     expect(screen.getByText("登録")).toBeEnabled();
   });
-  it.todo(
-    "登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。"
-  );
+  it("登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。", async () => {
+    // 登録するテキストの入力領域にテキストを入力する
+    await userEvent.type(
+      screen.getByPlaceholderText("登録するテキストを入力してください"),
+      "テキスト"
+    );
+    // 登録ボタンを押す
+    await userEvent.click(screen.getByText("登録"));
+
+    // 登録されたテキストの表示領域に、登録するテキストの入力領域に入力したテキストが表示されていることを確認する。
+    expect(screen.getByTestId("registered-text")).toHaveTextContent("テキスト");
+  });
 });

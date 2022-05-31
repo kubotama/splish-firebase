@@ -5,7 +5,13 @@ import styles from "../styles/Home.module.css";
 import { useRegister } from "../hooks/registerHook";
 
 const Home: NextPage = () => {
-  const { registerButtonDisabled, onChangeTextarea } = useRegister();
+  const {
+    inputTextarea,
+    registerButtonDisabled,
+    onChangeTextarea,
+    registeredText,
+    onClickRegister,
+  } = useRegister();
 
   return (
     <div className={styles.container}>
@@ -29,15 +35,22 @@ const Home: NextPage = () => {
           className={styles.textarea}
           onChange={onChangeTextarea}
           placeholder="登録するテキストを入力してください"
+          value={inputTextarea}
         ></textarea>
         {/* 登録ボタン(registerButton) */}
-        <button className={styles.button} disabled={registerButtonDisabled}>
+        <button
+          className={styles.button}
+          disabled={registerButtonDisabled}
+          onClick={onClickRegister}
+        >
           登録
         </button>
         {/* 登録されたテキストのラベル(registeredLabel) */}
         <div className={styles.description}>登録されたテキスト</div>
         {/* 登録されたテキストの表示領域(registeredText) */}
-        <div className={styles.description} data-testid="registered-text"></div>
+        <div className={styles.description} data-testid="registered-text">
+          {registeredText}
+        </div>
         {/* 登録ブロック 終わり */}
 
         {/* 変換ブロック */}
