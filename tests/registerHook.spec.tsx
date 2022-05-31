@@ -13,9 +13,9 @@ describe("登録ブロックのカスタムフックのテスト", () => {
   it("登録するテキストが空の場合、登録ボタンが無効である。", () => {
     // テスト対象のカスタムフックを呼び出す
     const { result } = renderHook(() => useRegister());
-    const registerText = result.current.registerText;
+    const registeredText = result.current.registeredText;
     // 登録するテキストが空であることを確認する
-    expect(registerText).toEqual("");
+    expect(registeredText).toEqual("");
 
     const registerButtonDisabled = result.current.registerButtonDisabled;
     // 登録ボタンが無効であることをテストする
@@ -37,7 +37,23 @@ describe("登録ブロックのカスタムフックのテスト", () => {
     expect(result.current.registerButtonDisabled).toEqual(false);
   });
 
-  it.todo(
-    "登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。"
-  );
+  it("登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。", () => {
+    // テスト対象のカスタムフックを呼び出す
+    const { result } = renderHook(() => useRegister());
+
+    // 登録するテキストの入力領域にテキストを入力する
+    act(() => {
+      result.current.onChangeTextarea({
+        target: { value: "テキスト" },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
+    });
+
+    // 登録ボタンを押す
+    act(() => {
+      result.current.onClickRegister();
+    });
+
+    // 登録するテキストの入力領域に入力されたテキストが登録されたテキストに表示されることをテストする
+    expect(result.current.registeredText).toEqual("テキスト");
+  });
 });

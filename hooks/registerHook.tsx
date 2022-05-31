@@ -19,7 +19,7 @@ export const useRegister = () => {
     textarea,
     registerButtonDisabled,
     onChangeTextarea,
-    registerText: registeredText,
+    registeredText,
     onClickRegister,
   };
 };
