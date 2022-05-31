@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react-hooks";
 
 import { useRegister } from "../hooks/registerHook";
 
@@ -22,7 +22,21 @@ describe("登録ブロックのカスタムフックのテスト", () => {
     expect(registerButtonDisabled).toEqual(true);
   });
 
-  it.todo("登録するテキストが空でない場合、登録ボタンが有効である。");
+  it("登録するテキストが空でない場合、登録ボタンが有効である。", () => {
+    // テスト対象のカスタムフックを呼び出す
+    const { result } = renderHook(() => useRegister());
+
+    // 登録するテキストにテキストを入力する
+    act(() => {
+      result.current.onChangeTextarea({
+        target: { value: "テキスト" },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
+    });
+
+    // 登録ボタンが有効であることをテストする
+    expect(result.current.registerButtonDisabled).toEqual(false);
+  });
+
   it.todo(
     "登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。"
   );

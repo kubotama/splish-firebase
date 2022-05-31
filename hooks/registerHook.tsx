@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export const useRegister = () => {
   const [textarea, setTextarea] = useState("");
@@ -6,7 +6,9 @@ export const useRegister = () => {
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(true);
 
   const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextarea(e.target.value);
+    const inputText = e.target.value;
+    setTextarea(inputText);
+    setRegisterButtonDisabled(inputText.length === 0);
   };
 
   const onClickRegister = () => {
