@@ -17,22 +17,37 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
 
+        {/* 登録ブロック */}
+        {/* 登録するテキストのラベル */}
         <div className={styles.description}>登録するテキスト</div>
+        {/* 登録するテキストの入力領域(inputTextarea) */}
         <textarea
           className={styles.textarea}
           placeholder="登録するテキストを入力してください"
         />
+        {/* 登録ボタン(registerButton) */}
         <button className={styles.button} disabled>
           登録
         </button>
+        {/* 登録されたテキストのラベル(registeredLabel) */}
         <div className={styles.description}>登録されたテキスト</div>
+        {/* 登録されたテキストの表示領域(registeredText) */}
         <div className={styles.description} data-testid="registered-text"></div>
+        {/* 登録ブロック 終わり */}
 
+        {/* 変換ブロック */}
+        {/* 変換ボタン(ttsButton) */}
         <button className={styles.button}>変換</button>
+        {/* 変換されたテキストのラベル(ttsedLabel) */}
         <div className={styles.description}>変換されたテキスト</div>
+        {/* 変換されたテキストの表示領域(ttsedText) */}
         <div className={styles.description} data-testid="ttsed-text" />
+        {/* 変換ブロック 終わり */}
 
+        {/* 再生ブロック */}
+        {/* 再生ボタン(playButton) */}
         <button className={styles.button}>再生</button>
+        {/* 再生ブロック 終わり */}
       </main>
     </div>
   );
