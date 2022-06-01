@@ -56,4 +56,33 @@ describe("登録ブロックのカスタムフックのテスト", () => {
     // 登録するテキストの入力領域に入力されたテキストが登録されたテキストに表示されることをテストする
     expect(result.current.registeredText).toEqual("テキスト");
   });
+
+  it("初期状態では変換ボタンが無効である。", () => {
+    const { result } = renderHook(() => useRegister());
+    const ttsButtonDisabled = result.current.ttsButtonDisabled;
+    expect(ttsButtonDisabled).toEqual(true);
+  });
+
+  it("テキストを登録すると、変換ボタンが有効になる。", () => {
+    // テスト対象のカスタムフックを呼び出す
+    const { result } = renderHook(() => useRegister());
+
+    // 変換ボタンが無効である
+    expect(result.current.ttsButtonDisabled).toEqual(true);
+
+    // 登録するテキストの入力領域にテキストを入力する
+    act(() => {
+      result.current.onChangeTextarea({
+        target: { value: "テキスト" },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
+    });
+
+    // 登録ボタンを押す
+    act(() => {
+      result.current.onClickRegister();
+    });
+
+    // 変換ボタンが有効である
+    expect(result.current.ttsButtonDisabled).toEqual(false);
+  });
 });
