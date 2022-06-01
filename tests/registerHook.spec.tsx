@@ -57,6 +57,11 @@ describe("登録ブロックのカスタムフックのテスト", () => {
     expect(result.current.registeredText).toEqual("テキスト");
   });
 
-  it.todo("初期状態では変換ボタンが無効である。");
+  it("初期状態では変換ボタンが無効である。", () => {
+    const { result } = renderHook(() => useRegister());
+    const ttsButtonDisabled = result.current.ttsButtonDisabled;
+    expect(ttsButtonDisabled).toEqual(true);
+  });
+
   it.todo("登録されたテキストが空でない場合、変換ボタンが有効である。");
 });
