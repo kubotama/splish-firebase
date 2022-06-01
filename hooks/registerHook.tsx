@@ -14,6 +14,7 @@ export const useRegister = () => {
 
   const onClickRegister = () => {
     setRegisteredText(inputTextarea);
+    setTtsButtonDisabled(inputTextarea.length === 0);
   };
 
   return {
