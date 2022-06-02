@@ -43,5 +43,5 @@ describe("登録ブロックのアクション", () => {
     expect(screen.getByText("変換")).toBeDisabled();
   });
 
-  it.todo("登録されたテキストが空でない場合、変換ボタンが有効である。");
+  it.todo("テキストを登録すると、変換ボタンが有効になる。");
 });
