@@ -39,6 +39,9 @@ describe("登録ブロックのアクション", () => {
     expect(screen.getByTestId("registered-text")).toHaveTextContent("テキスト");
   });
 
-  it.todo("初期状態では変換ボタンが無効である。");
+  it("初期状態では変換ボタンが無効である。", () => {
+    expect(screen.getByText("変換")).toBeDisabled();
+  });
+
   it.todo("登録されたテキストが空でない場合、変換ボタンが有効である。");
 });

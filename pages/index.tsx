@@ -55,7 +55,9 @@ const Home: NextPage = () => {
 
         {/* 変換ブロック */}
         {/* 変換ボタン(ttsButton) */}
-        <button className={styles.button}>変換</button>
+        <button className={styles.button} disabled>
+          変換
+        </button>
         {/* 変換されたテキストのラベル(ttsedLabel) */}
         <div className={styles.description}>変換されたテキスト</div>
         {/* 変換されたテキストの表示領域(ttsedText) */}
