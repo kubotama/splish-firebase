@@ -16,6 +16,24 @@ describe("変換ブロックのカスタムフックのテスト", () => {
     expect(screen.getByText("変換")).toBeDisabled();
   });
 
-  it.todo("登録されたテキストが空でない場合、変換ボタンが有効である。");
+  it("登録されたテキストが空でない場合、変換ボタンが有効である。", async () => {
+    render(<Home />);
+
+    //  最初は変換ボタンは無効
+    expect(screen.getByText("変換")).toBeDisabled();
+
+    // 入力欄に文字列を入力
+    await userEvent.type(
+      screen.getByPlaceholderText("登録するテキストを入力してください"),
+      "テキスト"
+    );
+
+    // 登録ボタンをクリック
+    await userEvent.click(screen.getByText("登録"));
+
+    // 変換ボタンが有効になる
+    expect(screen.getByText("変換")).toBeEnabled();
+  });
+
   it.todo("変換ボタンを押すと変換されたテキストに表示される。");
 });
