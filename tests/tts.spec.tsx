@@ -35,5 +35,24 @@ describe("変換ブロックのカスタムフックのテスト", () => {
     expect(screen.getByText("変換")).toBeEnabled();
   });
 
-  it.todo("変換ボタンを押すと変換されたテキストに表示される。");
+  it("変換ボタンを押すと変換されたテキストに表示される。", async () => {
+    // 最初は変換されたテキストは空
+    const ttsedText = screen.getByTestId("ttsed-text");
+    expect(ttsedText).toHaveTextContent("");
+
+    // 入力欄に文字列を入力
+    await userEvent.type(
+      screen.getByPlaceholderText("登録するテキストを入力してください"),
+      "テキスト"
+    );
+
+    // 登録ボタンをクリック
+    await userEvent.click(screen.getByText("登録"));
+
+    // 変換ボタンがクリック
+    await userEvent.click(screen.getByText("変換"));
+
+    // 変換されたテキストが表示される
+    expect(ttsedText).toHaveTextContent("テキスト");
+  });
 });

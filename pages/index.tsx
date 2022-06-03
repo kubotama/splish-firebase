@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import { useRegister } from "../hooks/registerHook";
+import { useTts } from "../hooks/ttsHook";
 
 const Home: NextPage = () => {
   const {
@@ -13,6 +14,8 @@ const Home: NextPage = () => {
     registeredText,
     onClickRegister,
   } = useRegister();
+
+  const { ttsedText, onClickTts } = useTts(registeredText);
 
   return (
     <div className={styles.container}>
@@ -56,13 +59,19 @@ const Home: NextPage = () => {
 
         {/* 変換ブロック */}
         {/* 変換ボタン(ttsButton) */}
-        <button className={styles.button} disabled={ttsButtonDisabled}>
+        <button
+          className={styles.button}
+          disabled={ttsButtonDisabled}
+          onClick={onClickTts}
+        >
           変換
         </button>
         {/* 変換されたテキストのラベル(ttsedLabel) */}
         <div className={styles.description}>変換されたテキスト</div>
         {/* 変換されたテキストの表示領域(ttsedText) */}
-        <div className={styles.description} data-testid="ttsed-text" />
+        <div className={styles.description} data-testid="ttsed-text">
+          {ttsedText}
+        </div>
         {/* 変換ブロック 終わり */}
 
         {/* 再生ブロック */}
