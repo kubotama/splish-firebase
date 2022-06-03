@@ -5,20 +5,20 @@ import userEvent from "@testing-library/user-event";
 import Home from "../pages/index";
 
 describe("変換ブロックのカスタムフックのテスト", () => {
-  it("初期状態では変換されたテキストの表示領域が空である。", () => {
+  beforeEach(() => {
     render(<Home />);
+  });
+
+  it("初期状態では変換されたテキストの表示領域が空である。", () => {
     const ttsedText = screen.getByTestId("ttsed-text");
     expect(ttsedText).toHaveTextContent("");
   });
 
   it("初期状態では変換ボタンが無効である。", () => {
-    render(<Home />);
     expect(screen.getByText("変換")).toBeDisabled();
   });
 
   it("登録されたテキストが空でない場合、変換ボタンが有効である。", async () => {
-    render(<Home />);
-
     //  最初は変換ボタンは無効
     expect(screen.getByText("変換")).toBeDisabled();
 
