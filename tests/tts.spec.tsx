@@ -11,7 +11,11 @@ describe("変換ブロックのカスタムフックのテスト", () => {
     expect(ttsedText).toHaveTextContent("");
   });
 
-  it.todo("初期状態では変換ボタンが無効である。");
+  it("初期状態では変換ボタンが無効である。", () => {
+    render(<Home />);
+    expect(screen.getByText("変換")).toBeDisabled();
+  });
+
   it.todo("登録されたテキストが空でない場合、変換ボタンが有効である。");
   it.todo("変換ボタンを押すと変換されたテキストに表示される。");
 });
