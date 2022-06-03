@@ -15,6 +15,11 @@ describe("登録ブロックのアクション", () => {
     expect(textarea).toHaveValue("");
   });
 
+  it("初期状態では登録されたテキストの表示領域が空である。", () => {
+    const registeredText = screen.getByTestId("registered-text");
+    expect(registeredText).toHaveTextContent("");
+  });
+
   it("登録するテキストが空の場合、登録ボタンが無効である。", () => {
     expect(screen.getByText("登録")).toBeDisabled();
   });
