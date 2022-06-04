@@ -6,6 +6,7 @@ export const useTts = (registeredText: string) => {
 
   const onClickTts = () => {
     setTtsedText(registeredText);
+    setPlayButtonDisabled(registeredText === "");
   };
 
   return {
