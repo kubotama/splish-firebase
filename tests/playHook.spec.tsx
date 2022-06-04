@@ -18,5 +18,13 @@ describe("再生ブロックのカスタムフックのテスト", () => {
     expect(result.current.playButtonDisabled).toEqual(false);
   });
 
-  it.todo("再生ボタンを押すと割り当てられた関数が呼び出される");
+  it("再生ボタンを押すと割り当てられた関数が呼び出される", () => {
+    const registeredText = "テキスト";
+    const { result } = renderHook(() => useTts(registeredText));
+    const spiedTts = jest.spyOn(result.current, "onClickTts");
+    act(() => {
+      result.current.onClickTts();
+    });
+    expect(spiedTts).toHaveBeenCalledTimes(1);
+  });
 });
