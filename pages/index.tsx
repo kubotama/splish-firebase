@@ -76,7 +76,9 @@ const Home: NextPage = () => {
 
         {/* 再生ブロック */}
         {/* 再生ボタン(playButton) */}
-        <button className={styles.button}>再生</button>
+        <button className={styles.button} disabled>
+          再生
+        </button>
         {/* 再生ブロック 終わり */}
       </main>
     </div>
