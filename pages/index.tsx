@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     onClickRegister,
   } = useRegister();
 
-  const { ttsedText, onClickTts } = useTts(registeredText);
+  const { ttsedText, playButtonDisabled, onClickTts } = useTts(registeredText);
 
   const { onClickPlay } = usePlay();
 
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
         {/* play button */}
         <button
           className={styles.button}
-          disabled={registerButtonDisabled}
+          disabled={playButtonDisabled}
           onClick={onClickPlay}
         >
           play
