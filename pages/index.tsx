@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 
 import { RegisterBlock } from "../components/registerBlock";
 import { TtsBlock } from "../components/ttsBlock";
+import { PlayBlock } from "../components/playBlock";
 
 import { useRegister } from "../hooks/registerHook";
 import { useTts } from "../hooks/ttsHook";
@@ -51,16 +52,10 @@ const Home: NextPage = () => {
           ttsedText={ttsedText}
         />
 
-        {/* play block */}
-        {/* play button */}
-        <button
-          className={styles.button}
-          disabled={playButtonDisabled}
-          onClick={onClickPlay}
-        >
-          play
-        </button>
-        {/* play block end */}
+        <PlayBlock
+          playButtonDisabled={playButtonDisabled}
+          onClickPlay={onClickPlay}
+        />
       </main>
     </div>
   );
