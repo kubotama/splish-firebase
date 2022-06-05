@@ -10,7 +10,16 @@ describe("変換ブロックのカスタムフックのテスト", () => {
     expect(result.current.ttsedText).toEqual("");
   });
 
-  it.todo(
-    "変換ボタンを押すと、変換されたテキストが変換されたテキストに表示される。"
-  );
+  it("変換ボタンを押すと、変換されたテキストが変換されたテキストに表示される。", () => {
+    const registeredText = "テキスト";
+    const { result } = renderHook(() => useTts(registeredText));
+
+    // 変換ボタンを押す
+    act(() => {
+      result.current.onClickTts();
+    });
+
+    // 変換されたテキストが変換されたテキストに表示される
+    expect(result.current.ttsedText).toEqual("テキスト");
+  });
 });

@@ -3,15 +3,22 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import { useRegister } from "../hooks/registerHook";
+import { useTts } from "../hooks/ttsHook";
+import { usePlay } from "../hooks/playHook";
 
 const Home: NextPage = () => {
   const {
     inputTextarea,
     registerButtonDisabled,
+    ttsButtonDisabled,
     onChangeTextarea,
     registeredText,
     onClickRegister,
   } = useRegister();
+
+  const { ttsedText, onClickTts } = useTts(registeredText);
+
+  const { onClickPlay } = usePlay();
 
   return (
     <div className={styles.container}>
@@ -55,16 +62,30 @@ const Home: NextPage = () => {
 
         {/* 変換ブロック */}
         {/* 変換ボタン(ttsButton) */}
-        <button className={styles.button}>変換</button>
+        <button
+          className={styles.button}
+          disabled={ttsButtonDisabled}
+          onClick={onClickTts}
+        >
+          変換
+        </button>
         {/* 変換されたテキストのラベル(ttsedLabel) */}
         <div className={styles.description}>変換されたテキスト</div>
         {/* 変換されたテキストの表示領域(ttsedText) */}
-        <div className={styles.description} data-testid="ttsed-text" />
+        <div className={styles.description} data-testid="ttsed-text">
+          {ttsedText}
+        </div>
         {/* 変換ブロック 終わり */}
 
         {/* 再生ブロック */}
         {/* 再生ボタン(playButton) */}
-        <button className={styles.button}>再生</button>
+        <button
+          className={styles.button}
+          disabled={registerButtonDisabled}
+          onClick={onClickPlay}
+        >
+          再生
+        </button>
         {/* 再生ブロック 終わり */}
       </main>
     </div>
