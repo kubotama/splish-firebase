@@ -4,7 +4,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Home from "../pages/index";
-import * as usePlay from "../hooks/playHook";
 
 const spyPlay = jest.fn();
 jest.mock("../hooks/playHook", () => ({
