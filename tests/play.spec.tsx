@@ -11,6 +11,22 @@ describe("再生ブロックのテスト", () => {
     expect(screen.getByText("再生")).toBeDisabled();
   });
 
-  it.todo("変換されたテキストが設定されると再生ボタンが有効になる");
+  it("play button is enabled if ttsed text is set", async () => {
+    render(<Home />);
+    // type the text in input textarea
+    await userEvent.type(
+      screen.getByPlaceholderText("登録するテキストを入力してください"),
+      "テキスト"
+    );
+    // click register button
+    await userEvent.click(screen.getByText("登録"));
+
+    // clock tts(text-to-speech) button
+    await userEvent.click(screen.getByText("変換"));
+
+    // check if the play button is enabled
+    expect(screen.getByText("再生")).toBeEnabled();
+  });
+
   it.todo("再生ボタンを押すと割り当てられた関数が呼び出される");
 });
