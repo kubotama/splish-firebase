@@ -3,86 +3,84 @@ import { renderHook, act } from "@testing-library/react-hooks";
 
 import { useRegister } from "../hooks/registerHook";
 
-describe("登録ブロックのカスタムフックのテスト", () => {
-  it("初期状態では登録するテキストの入力領域が空である。", () => {
+describe("tests for custom hook of register block", () => {
+  it("input textarea is empty in initial state", () => {
     const { result } = renderHook(() => useRegister());
     const inputTextarea = result.current.inputTextarea;
     expect(inputTextarea).toEqual("");
   });
 
-  it("登録するテキストが空の場合、登録ボタンが無効である。", () => {
-    // テスト対象のカスタムフックを呼び出す
+  it("register button is disabled if input textarea is empty", () => {
     const { result } = renderHook(() => useRegister());
     const registeredText = result.current.registeredText;
-    // 登録するテキストが空であることを確認する
+    // check register button is disabled
     expect(registeredText).toEqual("");
 
     const registerButtonDisabled = result.current.registerButtonDisabled;
-    // 登録ボタンが無効であることをテストする
+    // check register button is disabled
     expect(registerButtonDisabled).toEqual(true);
   });
 
-  it("登録するテキストが空でない場合、登録ボタンが有効である。", () => {
-    // テスト対象のカスタムフックを呼び出す
+  it("registered button is enabled if input textarea is not empty", () => {
     const { result } = renderHook(() => useRegister());
 
-    // 登録するテキストにテキストを入力する
     act(() => {
       result.current.onChangeTextarea({
-        target: { value: "テキスト" },
+        target: {
+          value:
+            "ydXQLpnaeSNMUt48rJGPZBZ9gPvL1aZ1NRAxbepsVn1yc6kwtrItEjIUn5rtx0kKsUQiZnE19lShxn8N5RftRBpI0jQx7ePdVpEP",
+        },
       } as React.ChangeEvent<HTMLTextAreaElement>);
     });
 
-    // 登録ボタンが有効であることをテストする
     expect(result.current.registerButtonDisabled).toEqual(false);
   });
 
-  it("登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。", () => {
-    // テスト対象のカスタムフックを呼び出す
+  it("registered text is displayed if registered button is clicked", () => {
     const { result } = renderHook(() => useRegister());
+    const testData =
+      "HD7uVJpIUus9o4RgzmyVj96Ib8aIJFPAGy7EsMR7mcyT3s2fujQSv9aOOAtZT4V8JEuGRnqffodYkYD3JIhj9afJf68ANrpGsPsf";
 
-    // 登録するテキストの入力領域にテキストを入力する
     act(() => {
       result.current.onChangeTextarea({
-        target: { value: "テキスト" },
+        target: {
+          value: testData,
+        },
       } as React.ChangeEvent<HTMLTextAreaElement>);
     });
 
-    // 登録ボタンを押す
     act(() => {
       result.current.onClickRegister();
     });
 
-    // 登録するテキストの入力領域に入力されたテキストが登録されたテキストに表示されることをテストする
-    expect(result.current.registeredText).toEqual("テキスト");
+    expect(result.current.registeredText).toEqual(testData);
   });
 
-  it("初期状態では変換ボタンが無効である。", () => {
+  it("tts button is disabled in initial state", () => {
     const { result } = renderHook(() => useRegister());
     const ttsButtonDisabled = result.current.ttsButtonDisabled;
     expect(ttsButtonDisabled).toEqual(true);
   });
 
-  it("テキストを登録すると、変換ボタンが有効になる。", () => {
-    // テスト対象のカスタムフックを呼び出す
+  it("tts button is enabled if text is registered", () => {
     const { result } = renderHook(() => useRegister());
 
-    // 変換ボタンが無効である
+    // check register button is disabled
     expect(result.current.ttsButtonDisabled).toEqual(true);
 
-    // 登録するテキストの入力領域にテキストを入力する
     act(() => {
       result.current.onChangeTextarea({
-        target: { value: "テキスト" },
+        target: {
+          value:
+            "nUbRdiPwaYQKsd1yNPU2pdQcZFgpcPgc4WLQJPqtMMrm3durbmuNQ7YuYdKZqonsn9XMuKbxZw3W9VgLbZbZ8liPCBVKa43YNEAQ",
+        },
       } as React.ChangeEvent<HTMLTextAreaElement>);
     });
 
-    // 登録ボタンを押す
     act(() => {
       result.current.onClickRegister();
     });
 
-    // 変換ボタンが有効である
     expect(result.current.ttsButtonDisabled).toEqual(false);
   });
 });

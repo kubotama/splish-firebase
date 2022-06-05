@@ -3,64 +3,65 @@ import { render, screen } from "@testing-library/react";
 
 import Home from "../pages/index";
 
-describe("トップページ", () => {
+describe("home page", () => {
   beforeEach(() => {
     render(<Home />);
   });
 
-  it("タイトル", () => {
+  it("title", () => {
     const title = screen.getByText("SPLISH");
     expect(title).toBeInTheDocument();
   });
 
-  describe("登録ブロック", () => {
-    it("入力テキストのラベル", () => {
-      const registerTextareaLabel = screen.getByText("登録するテキスト");
+  describe("register block", () => {
+    it("label of input text", () => {
+      const registerTextareaLabel = screen.getByText("input text");
       expect(registerTextareaLabel).toBeInTheDocument();
     });
 
-    it("入力テキストエリア", () => {
-      const registerTextarea =
-        screen.getByPlaceholderText("登録するテキストを入力してください");
+    it("input textarea", () => {
+      const registerTextarea = screen.getByPlaceholderText(
+        "please input text for register"
+      );
       expect(registerTextarea).toBeInTheDocument();
     });
 
-    it("登録ボタン", () => {
-      const registerButton = screen.getByText("登録");
+    it("register button", () => {
+      const registerButton = screen.getByText("register");
       expect(registerButton).toBeInTheDocument();
     });
 
-    it("登録されたテキストのラベル", () => {
-      const registeredTextLabel = screen.getByText("登録されたテキスト");
+    it("label of registered text", () => {
+      const registeredTextLabel = screen.getByText("registered text");
       expect(registeredTextLabel).toBeInTheDocument();
     });
 
-    it("登録されたテキスト", () => {
+    it("registered text", () => {
       const registerText = screen.getByTestId("registered-text");
       expect(registerText).toBeInTheDocument();
     });
   });
 
-  describe("変換ブロック", () => {
-    it("変換ボタン", () => {
-      const ttsButton = screen.getByText("変換");
+  describe("tts block", () => {
+    it("tts button", () => {
+      const ttsButton = screen.getByText("text to speech");
       expect(ttsButton).toBeInTheDocument();
     });
 
-    it("変換されたテキストのラベル", () => {
-      const ttsedTextLabel = screen.getByText("変換されたテキスト");
+    it("label of ttsed text", () => {
+      const ttsedTextLabel = screen.getByText("speech text");
       expect(ttsedTextLabel).toBeInTheDocument();
     });
 
-    it("変換されたテキスト", () => {
+    it("ttsed text", () => {
       const ttsedText = screen.getByTestId("ttsed-text");
       expect(ttsedText).toBeInTheDocument();
     });
   });
 
-  describe("再生ブロック", () => {
-    it("再生ボタン", () => {
-      const playButton = screen.getByText("再生");
+  describe("play block", () => {
+    it("play button", () => {
+      const playButton = screen.getByText("play");
       expect(playButton).toBeInTheDocument();
     });
   });

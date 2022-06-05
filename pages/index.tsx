@@ -34,59 +34,59 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
 
-        {/* 登録ブロック */}
-        {/* 登録するテキストのラベル */}
-        <div className={styles.description}>登録するテキスト</div>
-        {/* 登録するテキストの入力領域(inputTextarea) */}
+        {/* register block */}
+        {/* label of register text */}
+        <div className={styles.description}>input text</div>
+        {/* input textarea for registring text */}
         <textarea
           className={styles.textarea}
           onChange={onChangeTextarea}
-          placeholder="登録するテキストを入力してください"
+          placeholder="please input text for register"
           value={inputTextarea}
         ></textarea>
-        {/* 登録ボタン(registerButton) */}
+        {/* register button */}
         <button
           className={styles.button}
           disabled={registerButtonDisabled}
           onClick={onClickRegister}
         >
-          登録
+          register
         </button>
-        {/* 登録されたテキストのラベル(registeredLabel) */}
-        <div className={styles.description}>登録されたテキスト</div>
-        {/* 登録されたテキストの表示領域(registeredText) */}
+        {/* label of registered text */}
+        <div className={styles.description}>registered text</div>
+        {/* display area for registered text(registeredText) */}
         <div className={styles.description} data-testid="registered-text">
           {registeredText}
         </div>
-        {/* 登録ブロック 終わり */}
+        {/* register block end */}
 
-        {/* 変換ブロック */}
-        {/* 変換ボタン(ttsButton) */}
+        {/* tts(text to speech) block */}
+        {/* tts button */}
         <button
           className={styles.button}
           disabled={ttsButtonDisabled}
           onClick={onClickTts}
         >
-          変換
+          text to speech
         </button>
-        {/* 変換されたテキストのラベル(ttsedLabel) */}
-        <div className={styles.description}>変換されたテキスト</div>
-        {/* 変換されたテキストの表示領域(ttsedText) */}
+        {/* label of ttsed text */}
+        <div className={styles.description}>speech text</div>
+        {/* display area for ttsed text(ttsedText) */}
         <div className={styles.description} data-testid="ttsed-text">
           {ttsedText}
         </div>
-        {/* 変換ブロック 終わり */}
+        {/* tts block end */}
 
-        {/* 再生ブロック */}
-        {/* 再生ボタン(playButton) */}
+        {/* play block */}
+        {/* play button */}
         <button
           className={styles.button}
           disabled={registerButtonDisabled}
           onClick={onClickPlay}
         >
-          再生
+          play
         </button>
-        {/* 再生ブロック 終わり */}
+        {/* play block end */}
       </main>
     </div>
   );

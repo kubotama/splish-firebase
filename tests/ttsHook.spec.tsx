@@ -3,23 +3,23 @@ import { renderHook, act } from "@testing-library/react-hooks";
 
 import { useTts } from "../hooks/ttsHook";
 
-describe("変換ブロックのカスタムフックのテスト", () => {
-  it("初期状態では登録されたテキストの表示領域が空である。", () => {
-    const registeredText = "テキスト";
+describe("tests for custom hooks of tts block", () => {
+  it("registered text is empty in initial state", () => {
+    const registeredText =
+      "AC9ChKufERG7IYuN6DsV9FvWUUE3vOrarqVNiesL5OMfGaYGQqLhIhWC9Igoa1lYh0CaIUFEjNVJF1WqjpeOw8HZfSVnnGQn8CYN";
     const { result } = renderHook(() => useTts(registeredText));
     expect(result.current.ttsedText).toEqual("");
   });
 
-  it("変換ボタンを押すと、変換されたテキストが変換されたテキストに表示される。", () => {
-    const registeredText = "テキスト";
+  it("ttsed text is displayed if tts button is clicked", () => {
+    const registeredText =
+      "qyJgNO2qclf4S2ZIXxI7ylHIvvsUyB1whgv5WTd6Ks6MRU2jPETOpbF4omdywNyq7CzUjLLwT5QvdCKQddkdXGN83rrdYUJorBkV";
     const { result } = renderHook(() => useTts(registeredText));
 
-    // 変換ボタンを押す
     act(() => {
       result.current.onClickTts();
     });
 
-    // 変換されたテキストが変換されたテキストに表示される
-    expect(result.current.ttsedText).toEqual("テキスト");
+    expect(result.current.ttsedText).toEqual(registeredText);
   });
 });

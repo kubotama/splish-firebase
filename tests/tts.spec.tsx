@@ -4,55 +4,53 @@ import userEvent from "@testing-library/user-event";
 
 import Home from "../pages/index";
 
-describe("変換ブロックのカスタムフックのテスト", () => {
+describe("tests for custom hooks of tts block", () => {
   beforeEach(() => {
     render(<Home />);
   });
 
-  it("初期状態では変換されたテキストの表示領域が空である。", () => {
+  it("ttsed text is empty in initial state", () => {
     const ttsedText = screen.getByTestId("ttsed-text");
     expect(ttsedText).toHaveTextContent("");
   });
 
-  it("初期状態では変換ボタンが無効である。", () => {
-    expect(screen.getByText("変換")).toBeDisabled();
+  it("tts button is disabled in initial state", () => {
+    expect(screen.getByText("text to speech")).toBeDisabled();
   });
 
-  it("登録されたテキストが空でない場合、変換ボタンが有効である。", async () => {
-    //  最初は変換ボタンは無効
-    expect(screen.getByText("変換")).toBeDisabled();
+  it("tts button is enable if registered text is not empty", async () => {
+    // checj tts button is disabled in initial state
+    expect(screen.getByText("text to speech")).toBeDisabled();
 
-    // 入力欄に文字列を入力
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      "NU0aC4xQAIpcESEOz04eyHCkgRyDcjlafIRHLXPFnTIrT6qqbliqD6qnLR5exJMRQUz93YkeYHn9fZmU43cIWuc9kuexg9qecj3t"
     );
 
-    // 登録ボタンをクリック
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
-    // 変換ボタンが有効になる
-    expect(screen.getByText("変換")).toBeEnabled();
+    expect(screen.getByText("text to speech")).toBeEnabled();
   });
 
-  it("変換ボタンを押すと変換されたテキストに表示される。", async () => {
-    // 最初は変換されたテキストは空
+  it("ttsed text is displayed if tts button is clicked", async () => {
+    // check tts button is disabled in initial state
     const ttsedText = screen.getByTestId("ttsed-text");
     expect(ttsedText).toHaveTextContent("");
 
-    // 入力欄に文字列を入力
+    const testData =
+      "qALEAI9nzgDpf4jdcADyOCu0e3sKAjRIYoV7xluMo63UuaTUUKoBpBt4lbW5fWnEPlituQlEJKsXwoCd8QDl6cUGyVTn9Pidy6u6";
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      testData
     );
 
     // 登録ボタンをクリック
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
     // 変換ボタンがクリック
-    await userEvent.click(screen.getByText("変換"));
+    await userEvent.click(screen.getByText("text to speech"));
 
     // 変換されたテキストが表示される
-    expect(ttsedText).toHaveTextContent("テキスト");
+    expect(ttsedText).toHaveTextContent(testData);
   });
 });
