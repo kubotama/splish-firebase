@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { renderHook, act } from "@testing-library/react-hooks";
 
 import { useTts } from "../hooks/ttsHook";
+import { usePlay } from "../hooks/playHook";
 
 describe("再生ブロックのカスタムフックのテスト", () => {
   it("初期状態では再生ボタンは無効である", () => {
@@ -19,12 +20,11 @@ describe("再生ブロックのカスタムフックのテスト", () => {
   });
 
   it("再生ボタンを押すと割り当てられた関数が呼び出される", () => {
-    const registeredText = "テキスト";
-    const { result } = renderHook(() => useTts(registeredText));
-    const spiedTts = jest.spyOn(result.current, "onClickTts");
+    const { result } = renderHook(() => usePlay());
+    const spiedPlay = jest.spyOn(result.current, "onClickPlay");
     act(() => {
-      result.current.onClickTts();
+      result.current.onClickPlay();
     });
-    expect(spiedTts).toHaveBeenCalledTimes(1);
+    expect(spiedPlay).toHaveBeenCalledTimes(1);
   });
 });

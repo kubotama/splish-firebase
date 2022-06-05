@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 
 import { useRegister } from "../hooks/registerHook";
 import { useTts } from "../hooks/ttsHook";
+import { usePlay } from "../hooks/playHook";
 
 const Home: NextPage = () => {
   const {
@@ -16,6 +17,8 @@ const Home: NextPage = () => {
   } = useRegister();
 
   const { ttsedText, onClickTts } = useTts(registeredText);
+
+  const { onClickPlay } = usePlay();
 
   return (
     <div className={styles.container}>
@@ -76,7 +79,13 @@ const Home: NextPage = () => {
 
         {/* 再生ブロック */}
         {/* 再生ボタン(playButton) */}
-        <button className={styles.button}>再生</button>
+        <button
+          className={styles.button}
+          disabled={registerButtonDisabled}
+          onClick={onClickPlay}
+        >
+          再生
+        </button>
         {/* 再生ブロック 終わり */}
       </main>
     </div>
