@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+import { RegisterBlock } from "../components/registerBlock";
+
 import { useRegister } from "../hooks/registerHook";
 import { useTts } from "../hooks/ttsHook";
 import { usePlay } from "../hooks/playHook";
@@ -34,31 +36,13 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
 
-        {/* register block */}
-        {/* label of register text */}
-        <div className={styles.description}>input text</div>
-        {/* input textarea for registring text */}
-        <textarea
-          className={styles.textarea}
-          onChange={onChangeTextarea}
-          placeholder="please input text for register"
-          value={inputTextarea}
-        ></textarea>
-        {/* register button */}
-        <button
-          className={styles.button}
-          disabled={registerButtonDisabled}
-          onClick={onClickRegister}
-        >
-          register
-        </button>
-        {/* label of registered text */}
-        <div className={styles.description}>registered text</div>
-        {/* display area for registered text(registeredText) */}
-        <div className={styles.description} data-testid="registered-text">
-          {registeredText}
-        </div>
-        {/* register block end */}
+        <RegisterBlock
+          onChangeTextarea={onChangeTextarea}
+          inputTextarea={inputTextarea}
+          registerButtonDisabled={registerButtonDisabled}
+          onClickRegister={onClickRegister}
+          registeredText={registeredText}
+        />
 
         {/* tts(text to speech) block */}
         {/* tts button */}
