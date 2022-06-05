@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import { RegisterBlock } from "../components/registerBlock";
+import { TtsBlock } from "../components/ttsBlock";
 
 import { useRegister } from "../hooks/registerHook";
 import { useTts } from "../hooks/ttsHook";
@@ -44,22 +45,11 @@ const Home: NextPage = () => {
           registeredText={registeredText}
         />
 
-        {/* tts(text to speech) block */}
-        {/* tts button */}
-        <button
-          className={styles.button}
-          disabled={ttsButtonDisabled}
-          onClick={onClickTts}
-        >
-          text to speech
-        </button>
-        {/* label of ttsed text */}
-        <div className={styles.description}>speech text</div>
-        {/* display area for ttsed text(ttsedText) */}
-        <div className={styles.description} data-testid="ttsed-text">
-          {ttsedText}
-        </div>
-        {/* tts block end */}
+        <TtsBlock
+          ttsButtonDisabled={ttsButtonDisabled}
+          onClickTts={onClickTts}
+          ttsedText={ttsedText}
+        />
 
         {/* play block */}
         {/* play button */}
