@@ -2,6 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+import { RegisterBlock } from "../components/registerBlock";
+import { TtsBlock } from "../components/ttsBlock";
+import { PlayBlock } from "../components/playBlock";
+
 import { useRegister } from "../hooks/registerHook";
 import { useTts } from "../hooks/ttsHook";
 import { usePlay } from "../hooks/playHook";
@@ -16,7 +20,7 @@ const Home: NextPage = () => {
     onClickRegister,
   } = useRegister();
 
-  const { ttsedText, onClickTts } = useTts(registeredText);
+  const { ttsedText, playButtonDisabled, onClickTts } = useTts(registeredText);
 
   const { onClickPlay } = usePlay();
 
@@ -34,59 +38,24 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>SPLISH</h1>
 
-        {/* register block */}
-        {/* label of register text */}
-        <div className={styles.description}>input text</div>
-        {/* input textarea for registring text */}
-        <textarea
-          className={styles.textarea}
-          onChange={onChangeTextarea}
-          placeholder="please input text for register"
-          value={inputTextarea}
-        ></textarea>
-        {/* register button */}
-        <button
-          className={styles.button}
-          disabled={registerButtonDisabled}
-          onClick={onClickRegister}
-        >
-          register
-        </button>
-        {/* label of registered text */}
-        <div className={styles.description}>registered text</div>
-        {/* display area for registered text(registeredText) */}
-        <div className={styles.description} data-testid="registered-text">
-          {registeredText}
-        </div>
-        {/* register block end */}
+        <RegisterBlock
+          onChangeTextarea={onChangeTextarea}
+          inputTextarea={inputTextarea}
+          registerButtonDisabled={registerButtonDisabled}
+          onClickRegister={onClickRegister}
+          registeredText={registeredText}
+        />
 
-        {/* tts(text to speech) block */}
-        {/* tts button */}
-        <button
-          className={styles.button}
-          disabled={ttsButtonDisabled}
-          onClick={onClickTts}
-        >
-          text to speech
-        </button>
-        {/* label of ttsed text */}
-        <div className={styles.description}>speech text</div>
-        {/* display area for ttsed text(ttsedText) */}
-        <div className={styles.description} data-testid="ttsed-text">
-          {ttsedText}
-        </div>
-        {/* tts block end */}
+        <TtsBlock
+          ttsButtonDisabled={ttsButtonDisabled}
+          onClickTts={onClickTts}
+          ttsedText={ttsedText}
+        />
 
-        {/* play block */}
-        {/* play button */}
-        <button
-          className={styles.button}
-          disabled={registerButtonDisabled}
-          onClick={onClickPlay}
-        >
-          play
-        </button>
-        {/* play block end */}
+        <PlayBlock
+          playButtonDisabled={playButtonDisabled}
+          onClickPlay={onClickPlay}
+        />
       </main>
     </div>
   );
