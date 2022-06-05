@@ -10,47 +10,47 @@ jest.mock("../hooks/playHook", () => ({
   usePlay: () => ({ onClickPlay: spyPlay }),
 }));
 
-describe("再生ブロックのテスト", () => {
-  it("初期状態では再生ボタンは無効である", () => {
+describe("test for play block", () => {
+  it("play button is disabled in the initial state", () => {
     render(<Home />);
-    expect(screen.getByText("再生")).toBeDisabled();
+    expect(screen.getByText("play")).toBeDisabled();
   });
 
   it("play button is enabled if ttsed text is set", async () => {
     render(<Home />);
     // type the text in input textarea
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      "MeFAoQdEE1Yw33MT7N9zReEmb62s3LrhzW5s5tj5fAlj61lQW9Vof10JriIFZtQN1aXExYCczRemhQB6LT4OAomxpLSwJUGspKHg"
     );
     // click register button
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
     // clock tts(text-to-speech) button
-    await userEvent.click(screen.getByText("変換"));
+    await userEvent.click(screen.getByText("text to speech"));
 
     // check if the play button is enabled
-    expect(screen.getByText("再生")).toBeEnabled();
+    expect(screen.getByText("play")).toBeEnabled();
   });
 
   it("called the assigned function if play button is clicked", async () => {
     render(<Home />);
     // type the text in input textarea
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "dlgcenbfihotrkspjmqa"
+      screen.getByPlaceholderText("please input text for register"),
+      "ymGmI8fA0tGyGRWkcPe41WQswhIyninmKeazA4SqS8G1lNCeK23wsEHhCiOsH4X9irxTJGtek66NYrBg18MCo1TVZcP9pafOJPeM"
     );
     // click register button
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
     // clock tts(text-to-speech) button
-    await userEvent.click(screen.getByText("変換"));
+    await userEvent.click(screen.getByText("text to speech"));
 
     // check if the play button is enabled
-    expect(screen.getByText("再生")).toBeEnabled();
+    expect(screen.getByText("play")).toBeEnabled();
 
     // click play button
-    await userEvent.click(screen.getByText("再生"));
+    await userEvent.click(screen.getByText("play"));
 
     // check if the assigned function is called
     expect(spyPlay).toHaveBeenCalledTimes(1);

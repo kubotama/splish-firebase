@@ -4,60 +4,57 @@ import userEvent from "@testing-library/user-event";
 
 import Home from "../pages/index";
 
-describe("登録ブロックのアクション", () => {
+describe("test for register block", () => {
   beforeEach(() => {
     render(<Home />);
   });
 
-  it("初期状態では登録するテキストの入力領域は空である。", () => {
-    const textarea =
-      screen.getByPlaceholderText("登録するテキストを入力してください");
+  it("input textarea is empty in initial state", () => {
+    const textarea = screen.getByPlaceholderText(
+      "please input text for register"
+    );
     expect(textarea).toHaveValue("");
   });
 
-  it("初期状態では登録されたテキストの表示領域が空である。", () => {
+  it("registered text is empty in initial state", () => {
     const registeredText = screen.getByTestId("registered-text");
     expect(registeredText).toHaveTextContent("");
   });
 
-  it("登録するテキストが空の場合、登録ボタンが無効である。", () => {
-    expect(screen.getByText("登録")).toBeDisabled();
+  it("register button is disabled if input text is empty", () => {
+    expect(screen.getByText("register")).toBeDisabled();
   });
 
-  it("登録するテキストが空でない場合、登録ボタンが有効である。", async () => {
+  it("register button is enabled if input text is not empty", async () => {
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      "GNtbLdMaj4n5rUNtkfg6uyaI3Q4kC5PVETeYvIjApoe8Q3UPz85reiLt4avrQIdBJXH0rWhP7NCnn3XXRLvdGXADCC22lSDpPW1z"
     );
-    expect(screen.getByText("登録")).toBeEnabled();
+    expect(screen.getByText("register")).toBeEnabled();
   });
-  it("登録ボタンを押すと、登録するテキストに入力されたテキストが登録されたテキストに表示される。", async () => {
-    // 登録するテキストの入力領域にテキストを入力する
+  it("registered text is displayed if register button is clicked", async () => {
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      "KdA02HvdnHTkN297Q9nkGAdbgxdiDTkTEITgB2zaaeUibymlHx2XF3IUIa83oogz5pPTS9UuNE4fvtY4GloHkLFLrJ9k2apCHZRf"
     );
-    // 登録ボタンを押す
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
-    // 登録されたテキストの表示領域に、登録するテキストの入力領域に入力したテキストが表示されていることを確認する。
-    expect(screen.getByTestId("registered-text")).toHaveTextContent("テキスト");
+    expect(screen.getByTestId("registered-text")).toHaveTextContent(
+      "KdA02HvdnHTkN297Q9nkGAdbgxdiDTkTEITgB2zaaeUibymlHx2XF3IUIa83oogz5pPTS9UuNE4fvtY4GloHkLFLrJ9k2apCHZRf"
+    );
   });
 
-  it("初期状態では変換ボタンが無効である。", () => {
-    expect(screen.getByText("変換")).toBeDisabled();
+  it("tts button is disabled in initial state", () => {
+    expect(screen.getByText("text to speech")).toBeDisabled();
   });
 
-  it("テキストを登録すると、変換ボタンが有効になる。", async () => {
-    // 登録するテキストの入力領域にテキストを入力する
+  it("tts button is enabled if text is registered", async () => {
     await userEvent.type(
-      screen.getByPlaceholderText("登録するテキストを入力してください"),
-      "テキスト"
+      screen.getByPlaceholderText("please input text for register"),
+      "dsUurFvaP1m3w5nYwoDOIfy06iicWkcMeRreSPHrWdN6217wSOJR7Rj8jG6fpMaYXDiisPIkUgoyJ3typWsmofrmaGGJ44BvJjUZ"
     );
-    // 登録ボタンを押す
-    await userEvent.click(screen.getByText("登録"));
+    await userEvent.click(screen.getByText("register"));
 
-    // 変換ボタンが有効になることを確認する
-    expect(screen.getByText("変換")).toBeEnabled();
+    expect(screen.getByText("text to speech")).toBeEnabled();
   });
 });
